@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -21,6 +22,34 @@ background:#0f172a;
 color:#e2e8f0;
 }
 
+/* PROGRESS BAR */
+
+#progress{
+position:fixed;
+top:0;
+left:0;
+height:4px;
+background:#38bdf8;
+width:0%;
+z-index:2000;
+}
+
+/* MENU BUTTON */
+
+.menu-btn{
+position:fixed;
+top:15px;
+left:15px;
+font-size:22px;
+background:#38bdf8;
+border:none;
+padding:6px 12px;
+border-radius:6px;
+cursor:pointer;
+z-index:1500;
+display:none;
+}
+
 /* SIDEBAR */
 
 .sidebar{
@@ -31,27 +60,37 @@ padding:25px;
 position:fixed;
 overflow:auto;
 border-right:1px solid #1e293b;
+transition:0.3s;
 }
 
 .sidebar h2{
-margin-bottom:20px;
-font-size:20px;
 color:#38bdf8;
+margin-bottom:15px;
+}
+
+.sidebar input{
+width:100%;
+padding:8px;
+margin-bottom:15px;
+border-radius:6px;
+border:none;
+background:#0f172a;
+color:white;
 }
 
 .sidebar a{
 display:block;
 padding:10px;
-margin-bottom:8px;
+margin-bottom:6px;
 text-decoration:none;
 color:#cbd5f5;
 border-radius:6px;
-transition:0.3s;
+transition:0.25s;
 }
 
 .sidebar a:hover{
 background:#1e293b;
-padding-left:15px;
+padding-left:14px;
 }
 
 /* CONTENT */
@@ -72,8 +111,8 @@ color:#38bdf8;
 }
 
 .identity{
-margin-top:8px;
 opacity:0.8;
+margin-top:6px;
 }
 
 /* SECTION */
@@ -83,8 +122,8 @@ margin-bottom:60px;
 }
 
 section h2{
-margin-bottom:15px;
 color:#7dd3fc;
+margin-bottom:10px;
 }
 
 /* CARD */
@@ -95,38 +134,38 @@ border:1px solid #1e293b;
 border-radius:10px;
 padding:20px;
 margin-top:15px;
-transition:0.3s;
+transition:0.25s;
 }
 
 .card:hover{
 transform:translateY(-5px);
-box-shadow:0 10px 30px rgba(0,0,0,0.5);
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
-/* CODE BLOCK */
+/* CODE */
 
 pre{
 background:#0f172a;
 padding:15px;
 border-radius:8px;
 overflow:auto;
-margin-top:10px;
 font-size:14px;
+margin-top:10px;
 }
 
-/* BUTTON */
+.code-buttons{
+margin-top:8px;
+}
 
 .btn{
-display:inline-block;
-margin-top:10px;
-padding:8px 14px;
-background:#38bdf8;
-color:black;
+padding:6px 12px;
 border:none;
 border-radius:6px;
+background:#38bdf8;
+color:black;
 cursor:pointer;
-font-size:14px;
-transition:0.3s;
+margin-right:5px;
+transition:0.2s;
 }
 
 .btn:hover{
@@ -134,16 +173,25 @@ background:#0ea5e9;
 transform:scale(1.05);
 }
 
-/* RESPONSIVE */
+/* MOBILE */
 
 @media(max-width:900px){
 
+.menu-btn{
+display:block;
+}
+
 .sidebar{
-display:none;
+transform:translateX(-100%);
+}
+
+.sidebar.active{
+transform:translateX(0);
 }
 
 .content{
 margin-left:0;
+padding:70px 25px;
 }
 
 }
@@ -153,11 +201,15 @@ margin-left:0;
 
 <body>
 
-<!-- SIDEBAR -->
+<div id="progress"></div>
+
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
 
 <div class="sidebar">
 
 <h2>Daftar Isi</h2>
+
+<input type="text" placeholder="Cari materi..." onkeyup="searchMenu(this)">
 
 <a href="#oop">Konsep OOP</a>
 <a href="#constructor">Jenis Constructor</a>
@@ -171,8 +223,6 @@ margin-left:0;
 
 </div>
 
-<!-- CONTENT -->
-
 <div class="content">
 
 <header>
@@ -185,8 +235,6 @@ Nama: <b>M. Bagas Khoirullah</b> | NIM: <b>251410016</b>
 </div>
 
 </header>
-
-<!-- OOP -->
 
 <section id="oop">
 
@@ -208,34 +256,14 @@ Buku(this.judul);
 }
 </pre>
 
-<button class="btn" onclick="openDartpad('code1')">
-Buka di DartPad
-</button>
-
+<div class="code-buttons">
+<button class="btn" onclick="copyCode('code1')">Copy</button>
+<button class="btn" onclick="openDartpad('code1')">DartPad</button>
 </div>
-</section>
-
-<!-- CONSTRUCTOR -->
-
-<section id="constructor">
-
-<h2>Jenis Constructor</h2>
-
-<div class="card">
-
-<ul>
-<li>Default Constructor</li>
-<li>Named Constructor</li>
-<li>Parameterized Constructor</li>
-<li>Constant Constructor</li>
-<li>Factory Constructor</li>
-</ul>
 
 </div>
 
 </section>
-
-<!-- NAMED -->
 
 <section id="named">
 
@@ -249,30 +277,29 @@ class Mobil {
 String? merk;
 int? tahun;
 
-Mobil(this.merk, this.tahun);
+Mobil(this.merk,this.tahun);
 
 Mobil.baru(){
-merk = 'Toyota';
-tahun = 2023;
+merk='Toyota';
+tahun=2023;
 }
 
 Mobil.dariJson(Map json){
-merk = json['merk'];
-tahun = json['tahun'];
+merk=json['merk'];
+tahun=json['tahun'];
 }
 
 }
 </pre>
 
-<button class="btn" onclick="openDartpad('code2')">
-Buka di DartPad
-</button>
+<div class="code-buttons">
+<button class="btn" onclick="copyCode('code2')">Copy</button>
+<button class="btn" onclick="openDartpad('code2')">DartPad</button>
+</div>
 
 </div>
 
 </section>
-
-<!-- CONSTANT -->
 
 <section id="constant">
 
@@ -281,7 +308,7 @@ Buka di DartPad
 <div class="card">
 
 <pre id="code3">
-class Warna {
+class Warna{
 
 final int r,g,b;
 
@@ -290,15 +317,14 @@ const Warna(this.r,this.g,this.b);
 }
 </pre>
 
-<button class="btn" onclick="openDartpad('code3')">
-Buka di DartPad
-</button>
+<div class="code-buttons">
+<button class="btn" onclick="copyCode('code3')">Copy</button>
+<button class="btn" onclick="openDartpad('code3')">DartPad</button>
+</div>
 
 </div>
 
 </section>
-
-<!-- ENCAPSULATION -->
 
 <section id="encapsulation">
 
@@ -306,76 +332,17 @@ Buka di DartPad
 
 <div class="card">
 
-<p>
-Enkapsulasi adalah konsep menyembunyikan detail implementasi
-dan hanya memberikan akses melalui method tertentu.
-</p>
+<p>Enkapsulasi adalah teknik menyembunyikan data dengan menggunakan field private.</p>
 
 <ul>
-<li>Keamanan data</li>
-<li>Kontrol akses</li>
-<li>Menggunakan _ untuk private</li>
+<li>Melindungi data</li>
+<li>Mengontrol akses</li>
+<li>Menggunakan underscore (_) untuk private</li>
 </ul>
 
 </div>
 
 </section>
-
-<!-- GETTER -->
-
-<section id="getter">
-
-<h2>Getter</h2>
-
-<div class="card">
-
-<pre id="code4">
-class Person {
-
-String _name;
-
-String get nama {
-return _name;
-}
-
-}
-</pre>
-
-<button class="btn" onclick="openDartpad('code4')">
-Buka di DartPad
-</button>
-
-</div>
-
-</section>
-
-<!-- SETTER -->
-
-<section id="setter">
-
-<h2>Setter</h2>
-
-<div class="card">
-
-<pre id="code5">
-set nama(String value){
-
-if(value.length >= 3){
-_name = value;
-}
-
-}
-</pre>
-
-<button class="btn" onclick="openDartpad('code5')">
-Buka di DartPad
-</button>
-
-</div>
-
-</section>
-
-<!-- LOGIN -->
 
 <section id="login">
 
@@ -383,8 +350,8 @@ Buka di DartPad
 
 <div class="card">
 
-<pre id="code6">
-class User {
+<pre id="code4">
+class User{
 
 String _username;
 String _password;
@@ -392,21 +359,20 @@ String _password;
 User(this._username,this._password);
 
 bool login(String u,String p){
-return _username == u && _password == p;
+return _username==u && _password==p;
 }
 
 }
 </pre>
 
-<button class="btn" onclick="openDartpad('code6')">
-Buka di DartPad
-</button>
+<div class="code-buttons">
+<button class="btn" onclick="copyCode('code4')">Copy</button>
+<button class="btn" onclick="openDartpad('code4')">DartPad</button>
+</div>
 
 </div>
 
 </section>
-
-<!-- LATIHAN -->
 
 <section id="latihan">
 
@@ -415,7 +381,6 @@ Buka di DartPad
 <div class="card">
 
 <ul>
-
 <li>Buat class RekeningBank</li>
 <li>Field private: nomorRekening dan saldo</li>
 <li>Method: deposit(), tarik(), cekSaldo()</li>
@@ -431,15 +396,39 @@ Buka di DartPad
 
 <script>
 
-function openDartpad(codeId){
+function toggleMenu(){
+document.querySelector(".sidebar").classList.toggle("active");
+}
 
-let code = document.getElementById(codeId).innerText;
-
+function copyCode(id){
+let code=document.getElementById(id).innerText;
 navigator.clipboard.writeText(code);
+alert("Kode berhasil disalin");
+}
 
+function openDartpad(id){
+let code=document.getElementById(id).innerText;
+navigator.clipboard.writeText(code);
 window.open("https://dartpad.dev/");
+alert("Kode disalin, paste di DartPad");
+}
 
-alert("Kode sudah disalin. Paste di DartPad.");
+window.onscroll=function(){
+let winScroll=document.body.scrollTop||document.documentElement.scrollTop;
+let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+let scrolled=(winScroll/height)*100;
+document.getElementById("progress").style.width=scrolled+"%";
+}
+
+function searchMenu(input){
+
+let filter=input.value.toLowerCase();
+let links=document.querySelectorAll(".sidebar a");
+
+links.forEach(link=>{
+let text=link.innerText.toLowerCase();
+link.style.display=text.includes(filter)?"block":"none";
+})
 
 }
 
@@ -447,3 +436,7 @@ alert("Kode sudah disalin. Paste di DartPad.");
 
 </body>
 </html>
+```
+
+
+ 
