@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resume Materi - Konstruktor & Enkapsulasi</title>
+
+<title>Resume OOP Dart - Konstruktor & Enkapsulasi</title>
 
 <style>
 
@@ -11,98 +12,140 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+font-family:Segoe UI, sans-serif;
 }
 
 body{
-background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-color:white;
-line-height:1.6;
+display:flex;
+background:#0f172a;
+color:#e2e8f0;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:260px;
+height:100vh;
+background:#020617;
+padding:25px;
+position:fixed;
+overflow:auto;
+border-right:1px solid #1e293b;
+}
+
+.sidebar h2{
+margin-bottom:20px;
+font-size:20px;
+color:#38bdf8;
+}
+
+.sidebar a{
+display:block;
+padding:10px;
+margin-bottom:8px;
+text-decoration:none;
+color:#cbd5f5;
+border-radius:6px;
+transition:0.3s;
+}
+
+.sidebar a:hover{
+background:#1e293b;
+padding-left:15px;
+}
+
+/* CONTENT */
+
+.content{
+margin-left:260px;
+padding:40px;
+max-width:900px;
 }
 
 header{
-text-align:center;
-padding:60px 20px;
+margin-bottom:40px;
 }
 
 header h1{
-font-size:40px;
-margin-bottom:10px;
-}
-
-header p{
-opacity:0.9;
-margin:5px 0;
+font-size:34px;
+color:#38bdf8;
 }
 
 .identity{
-margin-top:10px;
-font-size:15px;
-background:rgba(255,255,255,0.1);
-display:inline-block;
-padding:8px 18px;
-border-radius:20px;
+margin-top:8px;
+opacity:0.8;
 }
 
-.container{
-max-width:1100px;
-margin:auto;
-padding:20px;
+/* SECTION */
+
+section{
+margin-bottom:60px;
 }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:20px;
+section h2{
+margin-bottom:15px;
+color:#7dd3fc;
 }
+
+/* CARD */
 
 .card{
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(10px);
-border-radius:15px;
-padding:25px;
-box-shadow:0 10px 30px rgba(0,0,0,0.3);
+background:#020617;
+border:1px solid #1e293b;
+border-radius:10px;
+padding:20px;
+margin-top:15px;
 transition:0.3s;
 }
 
 .card:hover{
-transform:translateY(-8px);
+transform:translateY(-5px);
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
 }
 
-.card h2{
-margin-bottom:10px;
-color:#4fd1ff;
-}
+/* CODE BLOCK */
 
-ul{
-margin-left:18px;
-}
-
-.code{
-background:#111;
+pre{
+background:#0f172a;
 padding:15px;
-border-radius:10px;
-margin-top:10px;
-font-family:monospace;
-font-size:14px;
+border-radius:8px;
 overflow:auto;
+margin-top:10px;
+font-size:14px;
 }
 
-.badge{
+/* BUTTON */
+
+.btn{
 display:inline-block;
-background:#4fd1ff;
-color:#000;
-padding:4px 10px;
-border-radius:20px;
-font-size:12px;
-margin-bottom:10px;
+margin-top:10px;
+padding:8px 14px;
+background:#38bdf8;
+color:black;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-size:14px;
+transition:0.3s;
 }
 
-footer{
-text-align:center;
-margin-top:40px;
-padding:20px;
-opacity:0.7;
+.btn:hover{
+background:#0ea5e9;
+transform:scale(1.05);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.sidebar{
+display:none;
+}
+
+.content{
+margin-left:0;
+}
+
 }
 
 </style>
@@ -110,7 +153,30 @@ opacity:0.7;
 
 <body>
 
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<h2>Daftar Isi</h2>
+
+<a href="#oop">Konsep OOP</a>
+<a href="#constructor">Jenis Constructor</a>
+<a href="#named">Named Constructor</a>
+<a href="#constant">Constant Constructor</a>
+<a href="#encapsulation">Enkapsulasi</a>
+<a href="#getter">Getter</a>
+<a href="#setter">Setter</a>
+<a href="#login">Studi Kasus Login</a>
+<a href="#latihan">Latihan</a>
+
+</div>
+
+<!-- CONTENT -->
+
+<div class="content">
+
 <header>
+
 <h1>Konstruktor & Enkapsulasi</h1>
 <p>Resume Materi OOP Dart - Sesi 2</p>
 
@@ -120,31 +186,43 @@ Nama: <b>M. Bagas Khoirullah</b> | NIM: <b>251410016</b>
 
 </header>
 
-<div class="container">
+<!-- OOP -->
 
-<div class="grid">
+<section id="oop">
+
+<h2>Konsep Dasar OOP</h2>
 
 <div class="card">
-<span class="badge">Review OOP</span>
-<h2>Konsep Dasar</h2>
+
 <ul>
 <li>OOP berfokus pada objek</li>
 <li>Class adalah blueprint</li>
-<li>Object adalah instance dari class</li>
-<li>Constructor digunakan untuk inisialisasi objek</li>
+<li>Object adalah instance</li>
+<li>Constructor untuk inisialisasi objek</li>
 </ul>
 
-<div class="code">
+<pre id="code1">
 class Buku {
 String judul;
 Buku(this.judul);
 }
+</pre>
+
+<button class="btn" onclick="openDartpad('code1')">
+Buka di DartPad
+</button>
+
 </div>
-</div>
+</section>
+
+<!-- CONSTRUCTOR -->
+
+<section id="constructor">
+
+<h2>Jenis Constructor</h2>
 
 <div class="card">
-<span class="badge">Constructor</span>
-<h2>Jenis Constructor</h2>
+
 <ul>
 <li>Default Constructor</li>
 <li>Named Constructor</li>
@@ -152,46 +230,57 @@ Buku(this.judul);
 <li>Constant Constructor</li>
 <li>Factory Constructor</li>
 </ul>
+
 </div>
 
-<div class="card">
-<span class="badge">Example</span>
+</section>
+
+<!-- NAMED -->
+
+<section id="named">
+
 <h2>Named Constructor</h2>
 
-<div class="code">
+<div class="card">
+
+<pre id="code2">
 class Mobil {
 
 String? merk;
 int? tahun;
 
-Mobil(this.merk,this.tahun);
+Mobil(this.merk, this.tahun);
 
 Mobil.baru(){
-merk='Toyota';
-tahun=2023;
+merk = 'Toyota';
+tahun = 2023;
 }
 
 Mobil.dariJson(Map json){
-merk=json['merk'];
-tahun=json['tahun'];
+merk = json['merk'];
+tahun = json['tahun'];
 }
 
 }
-</div>
+</pre>
+
+<button class="btn" onclick="openDartpad('code2')">
+Buka di DartPad
+</button>
 
 </div>
 
-<div class="card">
-<span class="badge">Constant</span>
+</section>
+
+<!-- CONSTANT -->
+
+<section id="constant">
+
 <h2>Constant Constructor</h2>
 
-<ul>
-<li>Digunakan untuk objek immutable</li>
-<li>Semua field harus final</li>
-<li>Menghemat memory</li>
-</ul>
+<div class="card">
 
-<div class="code">
+<pre id="code3">
 class Warna {
 
 final int r,g,b;
@@ -199,46 +288,76 @@ final int r,g,b;
 const Warna(this.r,this.g,this.b);
 
 }
-</div>
+</pre>
+
+<button class="btn" onclick="openDartpad('code3')">
+Buka di DartPad
+</button>
 
 </div>
+
+</section>
+
+<!-- ENCAPSULATION -->
+
+<section id="encapsulation">
+
+<h2>Enkapsulasi</h2>
 
 <div class="card">
-<span class="badge">Encapsulation</span>
-<h2>Pengantar Enkapsulasi</h2>
+
+<p>
+Enkapsulasi adalah konsep menyembunyikan detail implementasi
+dan hanya memberikan akses melalui method tertentu.
+</p>
 
 <ul>
-<li>Menyembunyikan detail implementasi</li>
-<li>Melindungi data</li>
-<li>Mengontrol akses data</li>
-<li>Menggunakan underscore (_) untuk private</li>
+<li>Keamanan data</li>
+<li>Kontrol akses</li>
+<li>Menggunakan _ untuk private</li>
 </ul>
 
 </div>
 
-<div class="card">
-<span class="badge">Getter</span>
-<h2>Mengakses Data</h2>
+</section>
 
-<div class="code">
-class Person{
+<!-- GETTER -->
+
+<section id="getter">
+
+<h2>Getter</h2>
+
+<div class="card">
+
+<pre id="code4">
+class Person {
 
 String _name;
 
-String get nama{
+String get nama {
 return _name;
 }
 
 }
-</div>
+</pre>
+
+<button class="btn" onclick="openDartpad('code4')">
+Buka di DartPad
+</button>
 
 </div>
+
+</section>
+
+<!-- SETTER -->
+
+<section id="setter">
+
+<h2>Setter</h2>
 
 <div class="card">
-<span class="badge">Setter</span>
-<h2>Memodifikasi Data</h2>
 
-<div class="code">
+<pre id="code5">
 set nama(String value){
 
 if(value.length >= 3){
@@ -246,75 +365,85 @@ _name = value;
 }
 
 }
-</div>
+</pre>
+
+<button class="btn" onclick="openDartpad('code5')">
+Buka di DartPad
+</button>
 
 </div>
+
+</section>
+
+<!-- LOGIN -->
+
+<section id="login">
+
+<h2>Studi Kasus Login</h2>
 
 <div class="card">
-<span class="badge">Validasi</span>
-<h2>Getter & Setter Lengkap</h2>
 
-<div class="code">
-class Produk{
-
-String _nama;
-double _harga;
-
-String get nama => _nama;
-double get harga => _harga;
-
-set harga(double value){
-
-if(value > 0){
-_harga = value;
-}
-
-}
-
-}
-</div>
-
-</div>
-
-<div class="card">
-<span class="badge">Studi Kasus</span>
-<h2>Sistem Login</h2>
-
-<div class="code">
+<pre id="code6">
 class User {
 
 String _username;
 String _password;
+
+User(this._username,this._password);
 
 bool login(String u,String p){
 return _username == u && _password == p;
 }
 
 }
-</div>
+</pre>
+
+<button class="btn" onclick="openDartpad('code6')">
+Buka di DartPad
+</button>
 
 </div>
+
+</section>
+
+<!-- LATIHAN -->
+
+<section id="latihan">
+
+<h2>Latihan</h2>
 
 <div class="card">
-<span class="badge">Latihan</span>
-<h2>Practice</h2>
 
 <ul>
+
 <li>Buat class RekeningBank</li>
-<li>Field private: nomorRekening, saldo</li>
+<li>Field private: nomorRekening dan saldo</li>
 <li>Method: deposit(), tarik(), cekSaldo()</li>
 <li>Saldo tidak boleh negatif</li>
+
 </ul>
 
 </div>
 
-</div>
+</section>
 
 </div>
 
-<footer>
-<p>Resume Materi OOP Dart • Konstruktor & Enkapsulasi</p>
-</footer>
+<script>
+
+function openDartpad(codeId){
+
+let code = document.getElementById(codeId).innerText;
+
+navigator.clipboard.writeText(code);
+
+window.open("https://dartpad.dev/");
+
+alert("Kode sudah disalin. Paste di DartPad.");
+
+}
+
+</script>
 
 </body>
 </html>
