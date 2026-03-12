@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Materi - Konstruktor & Enkapsulasi</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
+line-height:1.6;
+}
+
+header{
+text-align:center;
+padding:60px 20px;
+}
+
+header h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+header p{
+opacity:0.9;
+margin:5px 0;
+}
+
+.identity{
+margin-top:10px;
+font-size:15px;
+background:rgba(255,255,255,0.1);
+display:inline-block;
+padding:8px 18px;
+border-radius:20px;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+border-radius:15px;
+padding:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card h2{
+margin-bottom:10px;
+color:#4fd1ff;
+}
+
+ul{
+margin-left:18px;
+}
+
+.code{
+background:#111;
+padding:15px;
+border-radius:10px;
+margin-top:10px;
+font-family:monospace;
+font-size:14px;
+overflow:auto;
+}
+
+.badge{
+display:inline-block;
+background:#4fd1ff;
+color:#000;
+padding:4px 10px;
+border-radius:20px;
+font-size:12px;
+margin-bottom:10px;
+}
+
+footer{
+text-align:center;
+margin-top:40px;
+padding:20px;
+opacity:0.7;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Konstruktor & Enkapsulasi</h1>
+<p>Resume Materi OOP Dart - Sesi 2</p>
+
+<div class="identity">
+Nama: <b>M. Bagas Khoirullah</b> | NIM: <b>251410016</b>
+</div>
+
+</header>
+
+<div class="container">
+
+<div class="grid">
+
+<div class="card">
+<span class="badge">Review OOP</span>
+<h2>Konsep Dasar</h2>
+<ul>
+<li>OOP berfokus pada objek</li>
+<li>Class adalah blueprint</li>
+<li>Object adalah instance dari class</li>
+<li>Constructor digunakan untuk inisialisasi objek</li>
+</ul>
+
+<div class="code">
+class Buku {
+String judul;
+Buku(this.judul);
+}
+</div>
+</div>
+
+<div class="card">
+<span class="badge">Constructor</span>
+<h2>Jenis Constructor</h2>
+<ul>
+<li>Default Constructor</li>
+<li>Named Constructor</li>
+<li>Parameterized Constructor</li>
+<li>Constant Constructor</li>
+<li>Factory Constructor</li>
+</ul>
+</div>
+
+<div class="card">
+<span class="badge">Example</span>
+<h2>Named Constructor</h2>
+
+<div class="code">
+class Mobil {
+
+String? merk;
+int? tahun;
+
+Mobil(this.merk,this.tahun);
+
+Mobil.baru(){
+merk='Toyota';
+tahun=2023;
+}
+
+Mobil.dariJson(Map json){
+merk=json['merk'];
+tahun=json['tahun'];
+}
+
+}
+</div>
+
+</div>
+
+<div class="card">
+<span class="badge">Constant</span>
+<h2>Constant Constructor</h2>
+
+<ul>
+<li>Digunakan untuk objek immutable</li>
+<li>Semua field harus final</li>
+<li>Menghemat memory</li>
+</ul>
+
+<div class="code">
+class Warna {
+
+final int r,g,b;
+
+const Warna(this.r,this.g,this.b);
+
+}
+</div>
+
+</div>
+
+<div class="card">
+<span class="badge">Encapsulation</span>
+<h2>Pengantar Enkapsulasi</h2>
+
+<ul>
+<li>Menyembunyikan detail implementasi</li>
+<li>Melindungi data</li>
+<li>Mengontrol akses data</li>
+<li>Menggunakan underscore (_) untuk private</li>
+</ul>
+
+</div>
+
+<div class="card">
+<span class="badge">Getter</span>
+<h2>Mengakses Data</h2>
+
+<div class="code">
+class Person{
+
+String _name;
+
+String get nama{
+return _name;
+}
+
+}
+</div>
+
+</div>
+
+<div class="card">
+<span class="badge">Setter</span>
+<h2>Memodifikasi Data</h2>
+
+<div class="code">
+set nama(String value){
+
+if(value.length >= 3){
+_name = value;
+}
+
+}
+</div>
+
+</div>
+
+<div class="card">
+<span class="badge">Validasi</span>
+<h2>Getter & Setter Lengkap</h2>
+
+<div class="code">
+class Produk{
+
+String _nama;
+double _harga;
+
+String get nama => _nama;
+double get harga => _harga;
+
+set harga(double value){
+
+if(value > 0){
+_harga = value;
+}
+
+}
+
+}
+</div>
+
+</div>
+
+<div class="card">
+<span class="badge">Studi Kasus</span>
+<h2>Sistem Login</h2>
+
+<div class="code">
+class User {
+
+String _username;
+String _password;
+
+bool login(String u,String p){
+return _username == u && _password == p;
+}
+
+}
+</div>
+
+</div>
+
+<div class="card">
+<span class="badge">Latihan</span>
+<h2>Practice</h2>
+
+<ul>
+<li>Buat class RekeningBank</li>
+<li>Field private: nomorRekening, saldo</li>
+<li>Method: deposit(), tarik(), cekSaldo()</li>
+<li>Saldo tidak boleh negatif</li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+<p>Resume Materi OOP Dart • Konstruktor & Enkapsulasi</p>
+</footer>
+
+</body>
+</html>
