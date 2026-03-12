@@ -1,9 +1,10 @@
-html
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Resume OOP Dart - Konstruktor & Enkapsulasi</title>
 
 <style>
@@ -33,7 +34,7 @@ width:0%;
 z-index:2000;
 }
 
-/* MENU BUTTON */
+/* MENU */
 
 .menu-btn{
 position:fixed;
@@ -152,9 +153,11 @@ font-size:14px;
 margin-top:10px;
 }
 
+/* BUTTON */
+
 .btn{
 margin-top:10px;
-padding:7px 14px;
+padding:8px 14px;
 border:none;
 border-radius:6px;
 background:#38bdf8;
@@ -176,40 +179,45 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.7);
+background:rgba(0,0,0,0.85);
 justify-content:center;
 align-items:center;
-z-index:3000;
+z-index:4000;
 }
 
 .modal-content{
+width:90%;
+height:90%;
 background:#020617;
-padding:25px;
 border-radius:10px;
-width:500px;
-max-width:90%;
+padding:20px;
+display:flex;
+flex-direction:column;
 }
 
-.modal-content h3{
+.modal-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
 margin-bottom:10px;
+}
+
+.modal-header h3{
 color:#38bdf8;
 }
 
-.modal-content textarea{
-width:100%;
-height:200px;
-background:#0f172a;
-color:white;
-border:none;
-border-radius:6px;
-padding:10px;
-margin-top:10px;
+.close{
+font-size:22px;
+cursor:pointer;
 }
 
-.close{
-float:right;
-cursor:pointer;
-font-size:20px;
+/* IFRAME */
+
+#dartpadFrame{
+flex:1;
+border:none;
+border-radius:8px;
+background:white;
 }
 
 /* MOBILE */
@@ -302,22 +310,7 @@ Buku(this.judul);
 }
 </pre>
 
-<button class="btn" onclick="showCode('code1')">Buka di DartPad</button>
-</div>
-</section>
-
-<!-- JENIS -->
-
-<section id="jenis">
-<h2>Jenis Constructor</h2>
-<div class="card">
-<ul>
-<li>Default Constructor</li>
-<li>Named Constructor</li>
-<li>Parameterized Constructor</li>
-<li>Constant Constructor</li>
-<li>Factory Constructor</li>
-</ul>
+<button class="btn" onclick="openDartpad('code1')">Jalankan di DartPad</button>
 </div>
 </section>
 
@@ -325,6 +318,7 @@ Buku(this.judul);
 
 <section id="named">
 <h2>Named Constructor</h2>
+
 <div class="card">
 
 <pre id="code2">
@@ -348,9 +342,10 @@ tahun=json['tahun'];
 }
 </pre>
 
-<button class="btn" onclick="showCode('code2')">Buka di DartPad</button>
+<button class="btn" onclick="openDartpad('code2')">Jalankan di DartPad</button>
 
 </div>
+
 </section>
 
 <!-- CONSTANT -->
@@ -359,8 +354,6 @@ tahun=json['tahun'];
 <h2>Constant Constructor</h2>
 
 <div class="card">
-
-<p>Digunakan untuk objek immutable. Semua field harus final.</p>
 
 <pre id="code3">
 class Warna{
@@ -372,246 +365,52 @@ const Warna(this.r,this.g,this.b);
 }
 </pre>
 
-<button class="btn" onclick="showCode('code3')">Buka di DartPad</button>
+<button class="btn" onclick="openDartpad('code3')">Jalankan di DartPad</button>
 
 </div>
-</section>
 
-<!-- INITIALIZER -->
-
-<section id="initializer">
-<h2>Constructor dengan Initializer List</h2>
-
-<div class="card">
-
-<pre id="code4">
-class Titik{
-
-final double x,y;
-
-Titik(double x,double y)
-: x = x.abs(),
-  y = y.abs() {
-
-print("Titik dibuat");
-
-}
-
-}
-</pre>
-
-<button class="btn" onclick="showCode('code4')">Buka di DartPad</button>
-
-</div>
-</section>
-
-<!-- PRAKTIK 1 -->
-
-<section id="praktik1">
-<h2>Praktik 1 – Multiple Constructor</h2>
-
-<div class="card">
-
-<p>Buat kelas Mahasiswa dengan beberapa constructor.</p>
-
-<pre id="code5">
-class Mahasiswa{
-
-String? nama;
-int? umur;
-
-Mahasiswa(this.nama,this.umur);
-
-Mahasiswa.dariMap(Map data){
-nama=data['nama'];
-umur=data['umur'];
-}
-
-Mahasiswa.tanpaNama(){
-nama="Tanpa Nama";
-umur=0;
-}
-
-}
-</pre>
-
-<button class="btn" onclick="showCode('code5')">Buka di DartPad</button>
-
-</div>
-</section>
-
-<!-- ENCAPSULATION -->
-
-<section id="encapsulation">
-<h2>Pengantar Enkapsulasi</h2>
-
-<div class="card">
-
-<ul>
-<li>Menyembunyikan detail implementasi</li>
-<li>Melindungi data</li>
-<li>Mengontrol akses</li>
-<li>Menggunakan underscore (_) untuk private</li>
-</ul>
-
-</div>
-</section>
-
-<!-- GETTER -->
-
-<section id="getter">
-<h2>Getter</h2>
-
-<div class="card">
-
-<pre id="code6">
-class Person{
-
-String _name;
-
-String get nama => _name;
-
-}
-</pre>
-
-<button class="btn" onclick="showCode('code6')">Buka di DartPad</button>
-
-</div>
-</section>
-
-<!-- SETTER -->
-
-<section id="setter">
-<h2>Setter</h2>
-
-<div class="card">
-
-<pre id="code7">
-set nama(String value){
-
-_name=value;
-
-}
-</pre>
-
-<button class="btn" onclick="showCode('code7')">Buka di DartPad</button>
-
-</div>
-</section>
-
-<!-- VALIDASI -->
-
-<section id="validasi">
-<h2>Getter & Setter dengan Validasi</h2>
-
-<div class="card">
-
-<pre id="code8">
-class Produk{
-
-String _nama;
-double _harga;
-
-Produk(this._nama,this._harga);
-
-String get nama => _nama;
-double get harga => _harga;
-
-set harga(double value){
-
-if(value>0){
-_harga=value;
-}
-
-}
-
-}
-</pre>
-
-<button class="btn" onclick="showCode('code8')">Buka di DartPad</button>
-
-</div>
-</section>
-
-<!-- LOGIN -->
-
-<section id="login">
-<h2>Studi Kasus Login</h2>
-
-<div class="card">
-
-<pre id="code9">
-class User{
-
-String _username;
-String _password;
-
-User(this._username,this._password);
-
-bool login(String u,String p){
-
-return _username==u && _password==p;
-
-}
-
-}
-</pre>
-
-<button class="btn" onclick="showCode('code9')">Buka di DartPad</button>
-
-</div>
-</section>
-
-<!-- RINGKASAN -->
-
-<section id="ringkasan">
-<h2>Ringkasan</h2>
-
-<div class="card">
-
-<ul>
-<li>Dart memiliki berbagai jenis constructor</li>
-<li>Enkapsulasi melindungi data dengan private field</li>
-<li>Getter dan setter mengontrol akses data</li>
-</ul>
-
-</div>
 </section>
 
 </div>
 
-<!-- MODAL -->
+<!-- POPUP -->
 
 <div id="modal" class="modal">
+
 <div class="modal-content">
 
+<div class="modal-header">
+<h3>Run Code - DartPad</h3>
 <span class="close" onclick="closeModal()">✖</span>
+</div>
 
-<h3>Kode Program</h3>
-
-<textarea id="modalCode"></textarea>
-
-<button class="btn" onclick="openDartpad()">Buka DartPad</button>
+<iframe id="dartpadFrame"></iframe>
 
 </div>
+
 </div>
 
 <script>
 
-let currentCode="";
+function openDartpad(id){
 
-function showCode(id){
-currentCode=document.getElementById(id).innerText;
-document.getElementById("modalCode").value=currentCode;
+let code=document.getElementById(id).innerText;
+
+let encoded=encodeURIComponent(code);
+
+let url="https://dartpad.dev/embed-dart.html?source="+encoded;
+
+document.getElementById("dartpadFrame").src=url;
+
 document.getElementById("modal").style.display="flex";
+
 }
 
 function closeModal(){
-document.getElementById("modal").style.display="none";
-}
 
-function openDartpad(){
-window.open("https://dartpad.dev/");
+document.getElementById("modal").style.display="none";
+document.getElementById("dartpadFrame").src="";
+
 }
 
 function toggleMenu(){
@@ -619,6 +418,7 @@ document.querySelector(".sidebar").classList.toggle("active");
 }
 
 function searchMenu(input){
+
 let filter=input.value.toLowerCase();
 let links=document.querySelectorAll(".sidebar a");
 
@@ -626,19 +426,23 @@ links.forEach(link=>{
 let text=link.innerText.toLowerCase();
 link.style.display=text.includes(filter)?"block":"none";
 });
+
 }
 
 window.onscroll=function(){
+
 let winScroll=document.documentElement.scrollTop;
 let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
 let scrolled=(winScroll/height)*100;
+
 document.getElementById("progress").style.width=scrolled+"%";
+
 }
 
 </script>
 
 </body>
 </html>
-
+```
 
  
