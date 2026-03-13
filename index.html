@@ -272,9 +272,9 @@ Nama: <b>M. Bagas Khoirullah</b> | NIM: <b>251410016</b>
 
 <pre id="code1">
 class Buku {
-String judul;
-Buku(this.judul);
-
+  String judul;
+  Buku(this.judul);
+  
 }
 </pre>
 </div>
@@ -288,10 +288,10 @@ Buku(this.judul);
 <div class="card">
 
 <ul>
-<li>Default Constructor: ClassName()</li>
-<li>Named Constructor: ClassName.nama()</li>
+<li>Default Constructor: ClassName( )</li>
+<li>Named Constructor: ClassName.nama( )</li>
 <li>Parameterized Constructor: ClassName(this.param)</li>
-<li>Constant Constructor: const ClassName()</li>
+<li>Constant Constructor: const ClassName( )</li>
 <li>Factory Constructor: (akan dibahas di sesi lanjut)</li>
 </ul>
 
@@ -307,26 +307,29 @@ Buku(this.judul);
 
 <pre>
 class Mobil {
-
-String? merk;
-int? tahun;
-
-Mobil(this.merk,this.tahun);
-
-Mobil.baru(){
-
-merk='Toyota';
-tahun=2023;
-
+  String? merk;
+  int? tahun;
+  
+// Parameterized constructor
+Mobil(this.merk, this.tahun);
+  
+// Named constructor
+Mobil.baru() {
+  merk = 'Toyota';
+  tahun = 2023;
 }
-
-Mobil.dariJson(Map json){
-
-merk=json['merk'];
-tahun=json['tahun'];
-
+  
+// Named constructor dengan parameter
+Mobil.dariJson(Map<String, dynamic> json) {
+  merk = json['merk'];
+  tahun = json['tahun'];
 }
-
+  
+// Override toString for better print output
+@override
+String toString() {
+  return 'Mobil{merk: $merk, tahun: $tahun}';
+  }
 }
 </pre>
 
@@ -341,13 +344,26 @@ tahun=json['tahun'];
 
 <div class="card">
 
+<ul>
+<li>Digunakan untuk objek yang immutable (tidak berubah)</li>
+<li>Semua field harus final</li>
+<li>Menghemat memory untuk objek yang sama</li>
+</ul>
+
 <pre id="code3">
 class Warna {
-
-final int r,g,b;
-
-const Warna(this.r,this.g,this.b);
-
+  final int r, g, b;
+  const Warna(this.r, this.g, this.b);
+  @override
+  String toString() {
+  return 'Warna(r: $r, g: $g, b: $b)';
+  }
+}
+void main() {
+  const merah = Warna(255, 0, 0);
+  const merahLagi = Warna(255, 0, 0); // Menggunakan instance yang sama di memory
+  print(merah);
+  print(merahLagi);
 }
 </pre>
 
@@ -363,19 +379,21 @@ const Warna(this.r,this.g,this.b);
 
 <div class="card">
 
+<ul>
+<li>Menginisialisasi field sebelum constructor body dieksekusi.</li>
+<li>Redirecting Contructor.(pertemuan 11/buku bab 9).</li>
+<li>Berguna untuk inisialisasi final field atau validasi.</li>
+</ul>
+  
 <pre id="code4">
 class Titik {
-
-final double x,y;
-
-Titik(double x,double y)
-: x = x.abs(),
-  y = y.abs() {
-
-print('Titik dibuat');
-
-}
-
+  final double x,y;
+  
+  Titik(double x,double y)
+  : x = x.abs(),
+    y = y.abs() {
+  print('Titik dibuat');
+  }
 }
 </pre>
 </div>
@@ -390,25 +408,21 @@ print('Titik dibuat');
 
 <pre id="code5">
 class Mahasiswa {
+  String? nama;
+  int? umur;
 
-String? nama;
-int? umur;
+  Mahasiswa(this.nama,this.umur);
+  Mahasiswa.dariMap(Map data){
+  nama=data['nama'];
+  umur=data['umur'];
+  }
 
-Mahasiswa(this.nama,this.umur);
+  Mahasiswa.tanpaNama(){
 
-Mahasiswa.dariMap(Map data){
+  nama="Tanpa Nama";
+  umur=0;
 
-nama=data['nama'];
-umur=data['umur'];
-
-}
-
-Mahasiswa.tanpaNama(){
-
-nama="Tanpa Nama";
-umur=0;
-
-}
+  }
 
 }
 </pre>
@@ -426,9 +440,9 @@ umur=0;
 <div class="card">
 
 <ul>
-<li>Menyembunyikan detail implementasi</li>
-<li>Melindungi data</li>
-<li>Kontrol akses</li>
+<li>Konsep: Menyembunyikan detail implementasi dari luar.</li>
+<li>Tujuan: Keamanan data, Kontrol akses, Fleksibilitas perubahan</li>
+<li>Cara di Dart: Menggunakan underscore (_ ) untuk private members.</li>
 </ul>
 
 </div>
@@ -448,9 +462,9 @@ umur=0;
 
 <pre>
 class Person {
-String _name;
-int age;
-Person(this._name,this.age);
+  String _name;
+  int age;
+  Person(this._name,this.age);
   
 }
 </pre>
@@ -463,21 +477,28 @@ Person(this._name,this.age);
 <h2>Getter</h2>
 
 <div class="card">
+  
+<ul>
+<li>Getter memungkinkan membaca data private dengan kontrol.</li>
+<li>Sintaks 1: tipeData get namaGetter => _field;</li>
+<li>Sintaks 2: tipeData namaGetter() { _field; }</li>
+</ul>
 
 <pre id="code7">
 class Person {
-
-String _name;
-int age;
-
-Person(this._name,this.age);
-
-String get getName => _name;
-
+  String _name;
+  int age;
+  Person(this._name, this.age);
+  
+  String get getName1 {
+  return _name;
+  }
+  
+  String getName() {
+  return _name;
+  }
 }
 </pre>
-
-<button class="btn" onclick="openDartpad('code7')">Jalankan di DartPad</button>
 
 </div>
 
@@ -488,24 +509,33 @@ String get getName => _name;
 <h2>Setter</h2>
 
 <div class="card">
+  
+<ul>
+<li>Setter memungkinkan modifikasi data dengan validasi.</li>
+<li>Sintaks 1: set namaSetter(value) { ... }</li>
+<li>Sintaks 2: void namaSetter(value) { ... }</li>
+</ul>
 
 <pre id="code8">
 class Person {
-
-String _name;
-
-Person(this._name);
-
-set setName(String name){
-
-_name=name;
-
+  String _name;
+  int age;
+  Person(this._name, this.age);
+  
+  set setName1(String name) {
+    _name = name;
+  }
+  
+  void setName(String name) {
+    _name = name;
+  }
+  
+  String getName() {
+    return _name;
+  }
 }
 
-}
 </pre>
-
-<button class="btn" onclick="openDartpad('code8')">Jalankan di DartPad</button>
 
 </div>
 
@@ -519,26 +549,32 @@ _name=name;
 
 <pre id="code9">
 class Produk {
+  String _nama;
+  double _harga;
+  Produk(this._nama, this._harga);
+  // Getter
+  String get nama => _nama;
+  double get harga => _harga;
+  // Setter dengan validasi
+  set nama(String value) {
+    if (value.length >= 3) {
+      _nama = value;
+    } else {
+      print('Gagal memperbarui nama: Nama harus memiliki minimal 3 karakter.');
+    }
+  }
 
-String _nama;
-double _harga;
-
-Produk(this._nama,this._harga);
-
-String get nama => _nama;
-
-set nama(String value){
-
-if(value.length>=3){
-_nama=value;
+  // Setter untuk harga (dipindahkan ke dalam kelas Produk)
+  set harga(double value) {
+    if (value > 0) {
+      _harga = value;
+    } else {
+      print('Gagal memperbarui harga: Harga harus lebih besar dari 0.');
+    }
+  }
 }
 
-}
-
-}
 </pre>
-
-<button class="btn" onclick="openDartpad('code9')">Jalankan di DartPad</button>
 
 </div>
 
@@ -546,7 +582,7 @@ _nama=value;
 
 <section id="praktik2">
 
-<h2>Praktik 2</h2>
+<h2>Praktik 2 - Enkapsulasi Lengkap</h2>
 
 <div class="card">
 
