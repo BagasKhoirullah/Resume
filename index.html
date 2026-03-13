@@ -32,18 +32,6 @@ width:0%;
 z-index:5000;
 }
 
-/* CARD */
-
-.card{
-background:#020617;
-border:1px solid #1e293b;
-border-radius:10px;
-padding:20px;
-margin-top:15px;
-transition:0.25s;
-}
-
-.card:hover{
 /* MENU BUTTON */
 
 .menu-btn{
@@ -107,6 +95,28 @@ overflow:auto;
 margin-top:10px;
 }
 
+/* CARD */ 
+  
+.card{ background:#020617;
+border:1px solid #1e293b;
+border-radius:10px;
+padding:20px;
+margin-top:15px; transition:0.25s;
+}
+
+.card:hover
+{ transform:translateY(-5px);
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+  
+pre{
+background:#0f172a;
+padding:15px;
+border-radius:8px;
+overflow:auto;
+margin-top:10px;
+}
+
 /* BUTTON */
 
 .btn{
@@ -159,10 +169,6 @@ border-radius:8px;
 /* MOBILE */
 
 @media(max-width:900px){
-
-.menu-btn{
-display:block;
-}
 
 .sidebar{
 transform:translateX(-100%);
@@ -807,7 +813,11 @@ document.getElementById("modal").style.display="none";
 
 function toggleMenu(){
 
-document.querySelector(".sidebar").classList.toggle("active");
+const sidebar = document.querySelector(".sidebar");
+const content = document.querySelector(".content");
+
+sidebar.classList.toggle("closed");
+content.classList.toggle("full");
 
 }
 
