@@ -331,7 +331,7 @@ tahun=json['tahun'];
 }
 </pre>
 
-<button class="jalankan" onclick="openDartpad('https://dartpad.dev/2164e4c471b07cb8fb2a1a1586c0f18a')">Jalankan di DartPad</button>
+<button class="btn" onclick="openDartpad('https://dartpad.dev/2164e4c471b07cb8fb2a1a1586c0f18a')">Jalankan di DartPad</button>
 </div>
 
 </section>
@@ -352,7 +352,7 @@ const Warna(this.r,this.g,this.b);
 }
 </pre>
 
-<button class="jalankan" onclick="openDartpad('https://dartpad.dev/8ce0e22d44732f6d6564bcde70863f1e')">Jalankan di DartPad</button>
+<button class="btn" onclick="openDartpad('https://dartpad.dev/8ce0e22d44732f6d6564bcde70863f1e')">Jalankan di DartPad</button>
 
 </div>
 
@@ -625,7 +625,7 @@ password==_password;
 <span onclick="closeModal()">✖</span>
 </div>
 
-<iframe id="dartpadFrame"></iframe>
+<iframe id="dartpadFrame" style="width:100%;height:100%;"></iframe>
 
 </div>
 
@@ -635,12 +635,14 @@ password==_password;
 
 function openDartpad(id){
 
-let code=document.getElementById(id).innerText;
-let encoded=encodeURIComponent(code);
-let url="https://dartpad.dev/embed-dart.html?source="+encoded;
+let code = document.getElementById(id).innerText;
+let encoded = encodeURIComponent(code);
 
-document.getElementById("dartpadFrame").src=url;
-document.getElementById("modal").style.display="flex";
+let url = "https://dartpad.dev/embed-inline.html?run=true&null_safety=true&code=" + encoded;
+
+document.getElementById("dartpadFrame").src = url;
+
+document.getElementById("modal").style.display = "flex";
 
 }
 
