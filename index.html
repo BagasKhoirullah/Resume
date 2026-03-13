@@ -4,7 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Resume OOP Dart - Konstruktor & Enkapsulasi</title>
 
 <style>
@@ -13,11 +12,10 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Segoe UI, sans-serif;
+font-family:Segoe UI,sans-serif;
 }
 
 body{
-display:flex;
 background:#0f172a;
 color:#e2e8f0;
 }
@@ -31,7 +29,7 @@ left:0;
 height:4px;
 background:#38bdf8;
 width:0%;
-z-index:2000;
+z-index:5000;
 }
 
 /* MENU */
@@ -46,7 +44,7 @@ border:none;
 padding:6px 12px;
 border-radius:6px;
 cursor:pointer;
-z-index:1500;
+z-index:4000;
 display:none;
 }
 
@@ -54,13 +52,16 @@ display:none;
 
 .sidebar{
 width:260px;
-height:100vh;
+height:100%;
 background:#020617;
 padding:25px;
 position:fixed;
+left:0;
+top:0;
 overflow:auto;
 border-right:1px solid #1e293b;
 transition:0.3s;
+z-index:3000;
 }
 
 .sidebar h2{
@@ -85,20 +86,19 @@ margin-bottom:6px;
 text-decoration:none;
 color:#cbd5f5;
 border-radius:6px;
-transition:0.25s;
+transition:0.2s;
 }
 
 .sidebar a:hover{
 background:#1e293b;
-padding-left:14px;
 }
 
 /* CONTENT */
 
 .content{
+max-width:900px;
 margin-left:260px;
 padding:40px;
-max-width:900px;
 }
 
 header{
@@ -111,19 +111,8 @@ color:#38bdf8;
 }
 
 .identity{
-opacity:0.8;
 margin-top:6px;
-}
-
-/* SECTION */
-
-section{
-margin-bottom:60px;
-}
-
-section h2{
-color:#7dd3fc;
-margin-bottom:10px;
+opacity:0.8;
 }
 
 /* CARD */
@@ -134,7 +123,7 @@ border:1px solid #1e293b;
 border-radius:10px;
 padding:20px;
 margin-top:15px;
-transition:0.25s;
+transition:0.2s;
 }
 
 .card:hover{
@@ -142,18 +131,13 @@ transform:translateY(-5px);
 box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
-/* CODE */
-
 pre{
 background:#0f172a;
 padding:15px;
 border-radius:8px;
 overflow:auto;
-font-size:14px;
 margin-top:10px;
 }
-
-/* BUTTON */
 
 .btn{
 margin-top:10px;
@@ -161,13 +145,7 @@ padding:8px 14px;
 border:none;
 border-radius:6px;
 background:#38bdf8;
-color:black;
 cursor:pointer;
-transition:0.2s;
-}
-
-.btn:hover{
-background:#0ea5e9;
 }
 
 /* POPUP */
@@ -179,10 +157,10 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.85);
+background:rgba(0,0,0,0.9);
 justify-content:center;
 align-items:center;
-z-index:4000;
+z-index:6000;
 }
 
 .modal-content{
@@ -202,22 +180,10 @@ align-items:center;
 margin-bottom:10px;
 }
 
-.modal-header h3{
-color:#38bdf8;
-}
-
-.close{
-font-size:22px;
-cursor:pointer;
-}
-
-/* IFRAME */
-
 #dartpadFrame{
 flex:1;
 border:none;
 border-radius:8px;
-background:white;
 }
 
 /* MOBILE */
@@ -252,13 +218,11 @@ padding:70px 25px;
 
 <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-<!-- SIDEBAR -->
-
 <div class="sidebar">
 
 <h2>Daftar Isi</h2>
 
-<input type="text" placeholder="Cari materi..." onkeyup="searchMenu(this)">
+<input type="text" placeholder="Cari..." onkeyup="searchMenu(this)">
 
 <a href="#review">Review OOP</a>
 <a href="#jenis">Jenis Constructor</a>
@@ -276,13 +240,11 @@ padding:70px 25px;
 
 </div>
 
-<!-- CONTENT -->
-
 <div class="content">
 
 <header>
 
-<h1>Konstruktor & Enkapsulasi</h1>
+<h1>Konstruktor dan Enkapsulasi</h1>
 <p>Resume Materi OOP Dart - Sesi 2</p>
 
 <div class="identity">
@@ -291,15 +253,16 @@ Nama: <b>M. Bagas Khoirullah</b> | NIM: <b>251410016</b>
 
 </header>
 
-<!-- REVIEW -->
-
 <section id="review">
-<h2>Review OOP</h2>
+
+<h2>Review Sesi 1</h2>
+
 <div class="card">
+
 <ul>
-<li>OOP adalah paradigma pemrograman berbasis objek</li>
-<li>Class adalah blueprint</li>
-<li>Object adalah instance</li>
+<li>OOP adalah paradigma berfokus pada objek</li>
+<li>Kelas adalah blueprint</li>
+<li>Objek adalah instance</li>
 <li>Constructor digunakan untuk inisialisasi objek</li>
 </ul>
 
@@ -310,13 +273,34 @@ Buku(this.judul);
 }
 </pre>
 
-<button class="btn" onclick="openDartpad('code1')">Jalankan di DartPad</button>
+<button class="btn" onclick="openDartpad('code1')">
+Jalankan di DartPad
+</button>
+
 </div>
+
 </section>
 
-<!-- NAMED -->
+<section id="jenis">
+
+<h2>Jenis Constructor</h2>
+
+<div class="card">
+
+<ul>
+<li>Default Constructor</li>
+<li>Named Constructor</li>
+<li>Parameterized Constructor</li>
+<li>Constant Constructor</li>
+<li>Factory Constructor</li>
+</ul>
+
+</div>
+
+</section>
 
 <section id="named">
+
 <h2>Named Constructor</h2>
 
 <div class="card">
@@ -342,21 +326,24 @@ tahun=json['tahun'];
 }
 </pre>
 
-<button class="btn" onclick="openDartpad('code2')">Jalankan di DartPad</button>
+<button class="btn" onclick="openDartpad('code2')">
+Jalankan di DartPad
+</button>
 
 </div>
 
 </section>
 
-<!-- CONSTANT -->
-
 <section id="constant">
+
 <h2>Constant Constructor</h2>
 
 <div class="card">
 
+<p>Digunakan untuk objek immutable.</p>
+
 <pre id="code3">
-class Warna{
+class Warna {
 
 final int r,g,b;
 
@@ -365,7 +352,137 @@ const Warna(this.r,this.g,this.b);
 }
 </pre>
 
-<button class="btn" onclick="openDartpad('code3')">Jalankan di DartPad</button>
+<button class="btn" onclick="openDartpad('code3')">
+Jalankan di DartPad
+</button>
+
+</div>
+
+</section>
+
+<section id="initializer">
+
+<h2>Constructor dengan Initializer List</h2>
+
+<div class="card">
+
+<pre id="code4">
+class Titik {
+
+final double x,y;
+
+Titik(double x,double y)
+: x = x.abs(),
+  y = y.abs() {
+
+print('Titik dibuat');
+
+}
+
+}
+</pre>
+
+<button class="btn" onclick="openDartpad('code4')">
+Jalankan di DartPad
+</button>
+
+</div>
+
+</section>
+
+<section id="praktik1">
+
+<h2>Praktik 1 – Multiple Constructor</h2>
+
+<div class="card">
+
+<p>Buat kelas Mahasiswa dengan beberapa constructor.</p>
+
+<pre id="code5">
+class Mahasiswa {
+
+String? nama;
+int? umur;
+
+Mahasiswa(this.nama,this.umur);
+
+Mahasiswa.dariMap(Map data){
+nama=data['nama'];
+umur=data['umur'];
+}
+
+Mahasiswa.tanpaNama(){
+nama="Tanpa Nama";
+umur=0;
+}
+
+}
+</pre>
+
+<button class="btn" onclick="openDartpad('code5')">
+Jalankan di DartPad
+</button>
+
+</div>
+
+</section>
+
+<section id="encapsulation">
+
+<h2>Pengantar Enkapsulasi</h2>
+
+<div class="card">
+
+<ul>
+<li>Menyembunyikan detail implementasi</li>
+<li>Keamanan data</li>
+<li>Kontrol akses</li>
+</ul>
+
+</div>
+
+</section>
+
+<section id="login">
+
+<h2>Studi Kasus Login</h2>
+
+<div class="card">
+
+<pre id="code6">
+class User {
+
+String _username;
+String _password;
+
+User(this._username,this._password);
+
+bool login(String username,String password){
+return _username==username && _password==password;
+}
+
+}
+</pre>
+
+<button class="btn" onclick="openDartpad('code6')">
+Jalankan di DartPad
+</button>
+
+</div>
+
+</section>
+
+<section id="ringkasan">
+
+<h2>Ringkasan</h2>
+
+<div class="card">
+
+<ul>
+<li>Dart memiliki berbagai jenis constructor</li>
+<li>Enkapsulasi melindungi data</li>
+<li>Getter dan setter memberikan kontrol akses</li>
+</ul>
 
 </div>
 
@@ -373,15 +490,13 @@ const Warna(this.r,this.g,this.b);
 
 </div>
 
-<!-- POPUP -->
-
 <div id="modal" class="modal">
 
 <div class="modal-content">
 
 <div class="modal-header">
-<h3>Run Code - DartPad</h3>
-<span class="close" onclick="closeModal()">✖</span>
+<h3>DartPad Editor</h3>
+<span onclick="closeModal()">✖</span>
 </div>
 
 <iframe id="dartpadFrame"></iframe>
@@ -407,10 +522,7 @@ document.getElementById("modal").style.display="flex";
 }
 
 function closeModal(){
-
 document.getElementById("modal").style.display="none";
-document.getElementById("dartpadFrame").src="";
-
 }
 
 function toggleMenu(){
@@ -420,11 +532,13 @@ document.querySelector(".sidebar").classList.toggle("active");
 function searchMenu(input){
 
 let filter=input.value.toLowerCase();
-let links=document.querySelectorAll(".sidebar a");
 
-links.forEach(link=>{
+document.querySelectorAll(".sidebar a").forEach(link=>{
+
 let text=link.innerText.toLowerCase();
+
 link.style.display=text.includes(filter)?"block":"none";
+
 });
 
 }
@@ -433,6 +547,7 @@ window.onscroll=function(){
 
 let winScroll=document.documentElement.scrollTop;
 let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+
 let scrolled=(winScroll/height)*100;
 
 document.getElementById("progress").style.width=scrolled+"%";
