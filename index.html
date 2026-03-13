@@ -32,7 +32,7 @@ width:0%;
 z-index:5000;
 }
 
-/* MENU BUTTON */
+/* MENU */
 
 .menu-btn{
 position:fixed;
@@ -45,6 +45,7 @@ padding:6px 12px;
 border-radius:6px;
 cursor:pointer;
 z-index:4000;
+display:none;
 }
 
 /* SIDEBAR */
@@ -59,14 +60,37 @@ left:0;
 top:0;
 overflow:auto;
 border-right:1px solid #1e293b;
-transition:0.35s;
+transition:0.3s;
 z-index:3000;
 }
 
-/* SIDEBAR COLLAPSE */
+.sidebar h2{
+color:#38bdf8;
+margin-bottom:15px;
+}
 
-.sidebar.closed{
-transform:translateX(-100%);
+.sidebar input{
+width:100%;
+padding:8px;
+margin-bottom:15px;
+border-radius:6px;
+border:none;
+background:#0f172a;
+color:white;
+}
+
+.sidebar a{
+display:block;
+padding:10px;
+margin-bottom:6px;
+text-decoration:none;
+color:#cbd5f5;
+border-radius:6px;
+transition:0.2s;
+}
+
+.sidebar a:hover{
+background:#1e293b;
 }
 
 /* CONTENT */
@@ -75,40 +99,38 @@ transform:translateX(-100%);
 max-width:900px;
 margin-left:260px;
 padding:40px;
-transition:0.35s;
 }
 
-/* CONTENT FULL WIDTH */
-
-.content.full{
-margin-left:0;
-max-width:1100px;
-}transform:translateY(-5px);
-box-shadow:0 10px 30px rgba(0,0,0,0.4);
+header{
+margin-bottom:40px;
 }
 
-pre{
-background:#0f172a;
-padding:15px;
-border-radius:8px;
-overflow:auto;
-margin-top:10px;
+header h1{
+font-size:34px;
+color:#38bdf8;
 }
 
-/* CARD */ 
-  
-.card{ background:#020617;
+.identity{
+margin-top:6px;
+opacity:0.8;
+}
+
+/* CARD */
+
+.card{
+background:#020617;
 border:1px solid #1e293b;
 border-radius:10px;
 padding:20px;
-margin-top:15px; transition:0.25s;
+margin-top:15px;
+transition:0.25s;
 }
 
-.card:hover
-{ transform:translateY(-5px);
+.card:hover{
+transform:translateY(-5px);
 box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
-  
+
 pre{
 background:#0f172a;
 padding:15px;
@@ -169,6 +191,10 @@ border-radius:8px;
 /* MOBILE */
 
 @media(max-width:900px){
+
+.menu-btn{
+display:block;
+}
 
 .sidebar{
 transform:translateX(-100%);
@@ -813,11 +839,7 @@ document.getElementById("modal").style.display="none";
 
 function toggleMenu(){
 
-const sidebar = document.querySelector(".sidebar");
-const content = document.querySelector(".content");
-
-sidebar.classList.toggle("closed");
-content.classList.toggle("full");
+document.querySelector(".sidebar").classList.toggle("active");
 
 }
 
