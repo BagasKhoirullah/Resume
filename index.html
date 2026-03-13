@@ -407,6 +407,10 @@ class Titik {
 <div class="card">
 
 <pre id="code5">
+// Nama   : M. Bagas Khoirullah
+// Nim    : 251410016
+// Kelas  : SI2A
+  
 class Mahasiswa {
   String? nama;
   int? umur;
@@ -585,17 +589,81 @@ class Produk {
 <h2>Praktik 2 - Enkapsulasi Lengkap</h2>
 
 <div class="card">
+<pre id="code6">
+// Nama   : M. Bagas Khoirullah
+// Nim    : 251410016
+// Kelas  : SI2A
+  
+class User {
 
-<ul>
+  String _username;
+  String _password;
+  String _email;
 
-<li>Field private: _username _password _email</li>
-<li>Getter semua field</li>
-<li>Setter dengan validasi</li>
-<li>Username minimal 5 karakter</li>
-<li>Password minimal 8 karakter</li>
-<li>Email harus mengandung @</li>
+  User(this._username, this._password, this._email);
 
-</ul>
+  // Getter
+  String get username => _username;
+  String get password => _password;
+  String get email => _email;
+
+  // Setter Username
+  set username(String value) {
+    if (value.length >= 5) {
+      _username = value;
+      print("Username berhasil diubah menjadi: $_username");
+    } else {
+      print("Username gagal diubah. Minimal 5 karakter.");
+    }
+  }
+
+  // Setter Password
+  set password(String value) {
+    if (value.length >= 8) {
+      _password = value;
+      print("Password berhasil diubah.");
+    } else {
+      print("Password gagal diubah. Minimal 8 karakter.");
+    }
+  }
+
+  // Setter Email
+  set email(String value) {
+    if (value.contains("@")) {
+      _email = value;
+      print("Email berhasil diubah menjadi: $_email");
+    } else {
+      print("Email tidak valid. Harus mengandung '@'.");
+    }
+  }
+}
+
+void main() {
+
+  // Membuat objek
+  User user1 = User("bagas123", "password123", "bagas@email.com");
+
+  // Menampilkan data awal
+  print("Username: ${user1.username}");
+  print("Password: ${user1.password}");
+  print("Email: ${user1.email}");
+
+  print("");
+
+  // Mencoba mengubah data
+  user1.username = "bag";        // gagal
+  user1.username = "bagas_k";    // berhasil
+
+  user1.password = "123";        // gagal
+  user1.password = "secure123";  // berhasil
+
+  user1.email = "bagasemail";    // gagal
+  user1.email = "bagas@mail.com";// berhasil
+
+}
+</pre>
+
+<button class="btn" onclick="openDartpad('https://dartpad.dev/d8464fa4ad87a77aee476d278f439e56')">Jalankan di DartPad</button>
 
 </div>
 
