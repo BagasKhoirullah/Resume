@@ -736,10 +736,69 @@ class User {
 // Nama   : M. Bagas Khoirullah
 // Nim    : 251410016
 // Kelas  : SI2A
+  
+class RekeningBank {
+
+  String _nomorRekening;
+  double _saldo;
+
+  // Constructor
+  RekeningBank(this._nomorRekening, this._saldo);
+
+  // Method untuk menambah saldo
+  void deposit(double jumlah) {
+    if (jumlah > 0) {
+      _saldo += jumlah;
+      print("Deposit berhasil: Rp$jumlah");
+    } else {
+      print("Jumlah deposit tidak valid.");
+    }
+  }
+
+  // Method untuk menarik saldo
+  void tarik(double jumlah) {
+    if (jumlah <= 0) {
+      print("Jumlah penarikan tidak valid.");
+    } else if (jumlah > _saldo) {
+      print("Saldo tidak mencukupi.");
+    } else {
+      _saldo -= jumlah;
+      print("Penarikan berhasil: Rp$jumlah");
+    }
+  }
+
+  // Method untuk mengecek saldo
+  void cekSaldo() {
+    print("Nomor Rekening : $_nomorRekening");
+    print("Saldo Saat Ini : Rp$_saldo");
+  }
+}
+
+void main() {
+
+  // Membuat objek rekening
+  RekeningBank rekening1 = RekeningBank("251410016", 900000);
+
+  print("=== Saldo Awal ===");
+  rekening1.cekSaldo();
+
+  print("\n=== Deposit ===");
+  rekening1.deposit(200000);
+
+  print("\n=== Tarik Saldo ===");
+  rekening1.tarik(100000);
+
+  print("\n=== Coba Tarik Melebihi Saldo ===");
+  rekening1.tarik(1000000);
+
+  print("\n=== Saldo Akhir ===");
+  rekening1.cekSaldo();
+
+}
 
 </pre>
 
-<button class="btn" onclick="openDartpad('https://dartpad.dev/d8464fa4ad87a77aee476d278f439e56')">Jalankan di DartPad</button>
+<button class="btn" onclick="openDartpad('https://dartpad.dev/6a1409c9014e33f5b43b8aee6afd17d6')">Jalankan di DartPad</button>
 
 </div>
 
