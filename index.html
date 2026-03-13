@@ -633,14 +633,9 @@ password==_password;
 
 <script>
 
-function openDartpad(id){
+function openDartpad(link){
 
-let code = document.getElementById(id).innerText;
-let encoded = encodeURIComponent(code);
-
-let url = "https://dartpad.dev/embed-inline.html?run=true&null_safety=true&code=" + encoded;
-
-document.getElementById("dartpadFrame").src = url;
+document.getElementById("dartpadFrame").src = link;
 
 document.getElementById("modal").style.display = "flex";
 
