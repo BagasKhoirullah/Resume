@@ -267,13 +267,12 @@ Nama: <b>M. Bagas Khoirullah</b> | NIM: <b>251410016</b>
 <li>Class adalah blueprint</li>
 <li>Object adalah instance</li>
 <li>Constructor untuk inisialisasi objek</li>
+<li>Contoh cepat:</li>
 </ul>
 
 <pre id="code1">
 class Buku {
-
 String judul;
-
 Buku(this.judul);
 
 }
@@ -289,11 +288,11 @@ Buku(this.judul);
 <div class="card">
 
 <ul>
-<li>Default Constructor</li>
-<li>Named Constructor</li>
-<li>Parameterized Constructor</li>
-<li>Constant Constructor</li>
-<li>Factory Constructor</li>
+<li>Default Constructor: ClassName()</li>
+<li>Named Constructor: ClassName.nama()</li>
+<li>Parameterized Constructor: ClassName(this.param)</li>
+<li>Constant Constructor: const ClassName()</li>
+<li>Factory Constructor: (akan dibahas di sesi lanjut)</li>
 </ul>
 
 </div>
@@ -414,7 +413,7 @@ umur=0;
 }
 </pre>
 
-<button class="btn" onclick="openDartpad('code5')">Jalankan di DartPad</button>
+<button class="btn" onclick="openDartpad('https://dartpad.dev/d0c36faa630d765037e8a6a2df688757')">Jalankan di DartPad</button>
 
 </div>
 
@@ -442,19 +441,19 @@ umur=0;
 
 <div class="card">
 
-<pre id="code6">
-class Person {
+<ul>
+<li>Public: Dapat diakses dari mana saja (default).</li>
+<li>Private: Hanya dapat diakses dalam file yang sama (gunakan _ ).</li>
+</ul>
 
+<pre>
+class Person {
 String _name;
 int age;
-
 Person(this._name,this.age);
-
+  
 }
 </pre>
-
-<button class="btn" onclick="openDartpad('code6')">Jalankan di DartPad</button>
-
 </div>
 
 </section>
