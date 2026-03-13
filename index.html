@@ -240,6 +240,7 @@ padding:70px 25px;
 <a href="#praktik2">Praktik 2</a>
 <a href="#login">Studi Kasus Login</a>
 <a href="#ringkasan">Ringkasan</a>
+<a href="#latihan">Latihan</a>
 
 </div>
 
@@ -677,23 +678,31 @@ void main() {
 
 <pre id="code10">
 class User {
-
-String _username;
-String _password;
-
-User(this._username,this._password);
-
-bool login(String username,String password){
-
-return username==_username &&
-password==_password;
-
+  String _username;
+  String _password;
+  User(this._username, this._password);
+  String get username => _username;
+  bool login(String username, String password) {
+    return _username == username && _password == password;
+  }
+  
+  void gantiPassword(String lama, String baru) {
+    if (_password == lama) { // Now _password refers to the instance variable of this User object
+      if (baru.length >= 8) {
+        _password = baru;
+        print('Password berhasil diubah.');
+      } else {
+        print('Gagal mengubah password: Password baru harus memiliki minimal 8 karakter.');
+      }
+    } else {
+      print('Gagal mengubah password: Password lama tidak sesuai.');
+    }
+  }
 }
 
-}
 </pre>
 
-<button class="btn" onclick="openDartpad('code10')">Jalankan di DartPad</button>
+<button class="btn" onclick="openDartpad('https://dartpad.dev/aabf88a9b1aed4002903063658532203')">Jalankan di DartPad</button>
 
 </div>
 
@@ -712,6 +721,25 @@ password==_password;
 <li>Getter dan Setter mengontrol akses</li>
 
 </ul>
+
+</div>
+
+</section>
+
+<section id="latihan">
+
+<h2>Latihan</h2>
+
+<div class="card">
+<pre id="code7">
+  
+// Nama   : M. Bagas Khoirullah
+// Nim    : 251410016
+// Kelas  : SI2A
+
+</pre>
+
+<button class="btn" onclick="openDartpad('https://dartpad.dev/d8464fa4ad87a77aee476d278f439e56')">Jalankan di DartPad</button>
 
 </div>
 
